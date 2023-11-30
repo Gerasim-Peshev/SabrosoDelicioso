@@ -1,0 +1,105 @@
+#login-page {
+    position: relative;
+    width: 650px;
+    height: auto;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: rgb(63, 63, 63);
+}
+
+#register-page {
+    position: relative;
+    width: 650px;
+    height: auto;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: rgb(63, 63, 63);
+}
+
+.container {
+    padding: 40px;
+}
+
+.container>h1 {
+    margin-top: 15px;
+    font-weight: 900;
+    font-size: 2.7rem;
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 17px;
+}
+
+label,
+input {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 27px;
+    color: white;
+    margin-top: 13px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+label:nth-of-type(2) {
+    margin-top: 20px;
+}
+
+input::placeholder {
+    color: rgba(184, 179, 179, 0.678);
+};
+
+
+label[for="female"] {
+    margin-top: 10px;
+}
+
+input[type="nickname"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+.customSelect {
+    background: #ecf0f3;
+    padding: 30px;
+    padding-left: 20px;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 24px;
+    border-radius: 50px;
+}
+
+label[for="terms"]>input {
+    display: inline;
+}
+
+.btn.submit {
+    margin-top: 30px;
+    background: rgb(255, 145, 0);
+    height: 60px;
+    border-radius: 20px;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+.btn.submit:hover {
+    color: rgb(255, 145, 0);
+    background-color: white;
+}
+
+.container {
+    text-align: left;
+    margin-top: 0px;
+}

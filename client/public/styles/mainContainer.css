@@ -1,0 +1,44 @@
+main h1 {
+    text-align: center;
+    font-size: 70px;
+}
+
+.recepiesContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.2em;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 2em;
+}
+
+.recepiesContainer section {
+    flex: 0 0 24%;
+}
+
+
+
+.recepiesContainer section img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+
+.recepiesContainer section button {
+    width: 15%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 1.7em;
+}
+
+.additionals {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: large;
+    padding: 0 0;
+    gap: 1em;
+}
