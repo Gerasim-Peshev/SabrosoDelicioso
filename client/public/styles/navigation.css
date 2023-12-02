@@ -26,7 +26,7 @@ nav ul li a {
     color: white;
 }
 
-nav img {
+#logo {
     width: 9%;
     height: auto;
     aspect-ratio: 1/1;
