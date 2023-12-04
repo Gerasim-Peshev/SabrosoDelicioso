@@ -5,7 +5,7 @@
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: rgb(63, 63, 63);
+    margin: auto;
 }
 
 #register-page {
@@ -15,7 +15,7 @@
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: rgb(63, 63, 63);
+    margin: auto;
 }
 
 .container {

@@ -1,7 +1,29 @@
+import * as recepiesServices from "../../services/recepiesService";
+import { useNavigate } from 'react-router-dom';
+
 export default function Create(){
+
+    const navigate = useNavigate();
+
+    const createRecepieHandler = async (e) => {
+        e.preventDefault();
+
+        const recepieData = Object.fromEntries(new FormData(e.currentTarget));
+
+
+        try{
+            const result = await recepiesServices.recepieCreate(recepieData);
+
+            navigate('/');
+        } catch (err){
+            console.log(err);
+        }
+
+    };
+
     return (
         <section id="create-page" className="auth">
-            <form id="create">
+            <form id="create" onSubmit={createRecepieHandler}>
                 <div className="container">
                     <h1>Create Recepie</h1>
                     <label htmlFor="title">Title:</label>
@@ -11,23 +33,21 @@ export default function Create(){
                     <input type="text" name="imageUrl" id="imageUrl" placeholder="Upload a photo"/>
 
                     <label htmlFor="category">Type:</label>
-                    <select className="customSelect" name="category" id="category" value={"Easy"}>
-                        <option value="easy">Easy</option>
-                        <option value="normal">Normal</option>
-                        <option value="hard">Hard</option>
-                    </select>
+                    <input type="text" name="category" id="category" placeholder="Easy, Normal or Hard"/>
 
                     <label htmlFor="prepTime">Preparation time in minutes:</label>
                     <input type="number" name="prepTime" id="prepTime" placeholder="0" />
 
                     <label htmlFor="portion">Portions:</label>
-                    <input type="number" name="portion" id="portion" />
+                    <input type="number" name="portion" id="portion" placeholder="0" />
 
                     <label htmlFor="ingredients">Ingredients:</label>
                     <textarea name="ingredients" id="ingredients" cols="30" rows="10"></textarea>
 
                     <label htmlFor="preparation">Preparation:</label>
                     <textarea name="preparation" id="preparation" cols="30" rows="10"></textarea>
+
+                    <input className="toHide" name="likes" id="likes" defaultValue={0} />
 
                     <input className="btn submit" type="submit" value="Create recepie" />
                 </div>
