@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function RecepieItem({
     title,
     imageUrl,
@@ -17,6 +19,7 @@ export default function RecepieItem({
                     <h5>Cooking time: {prepTime}m</h5>
                     <h5>Likes: {likes}</h5>
                     <button>Like</button>
+                    <Link to={`/recepie/${_id}`}>Details</Link>
                 </div>
             </section>
     )

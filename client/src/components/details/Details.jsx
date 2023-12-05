@@ -1,37 +1,41 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import * as recepieService from '../../services/recepiesService';
+
 export default function Details(){
+
+    const [recepie, setRecepie] = useState({});
+    const {recepieId} = useParams();
+
+    useEffect(() => {
+        recepieService.getOne(recepieId)
+                        .then(setRecepie);
+    }, [recepieId]);
+
     return (
         <div className="container">
             <div className="mainInfo">
-                <h1>Мусака</h1>
-                <img src="https://m.1001recepti.com/images/photos/recipes/size_5/musaka-s-kaima-i-zalivka-3-[1369].jpg" alt="" />
+                <h1>{recepie.title}</h1>
+                <img src={recepie.imageUrl} alt="" />
                 <div className="info">
-                    <h3>Вид: Лесна</h3>
-                    <h3>Време за приготвяне: 103м</h3>
-                    <h3>Порции: 12</h3>
+                    <h3>Type: {recepie.category}</h3>
+                    <h3>Preparation time: {recepie.prepTime}м</h3>
+                    <h3>Portions: {recepie.portion}</h3>
                 </div>
             </div>
             <div className="ingredients">
                 <h2>Ingredients</h2>
                 <ul>
-                    <li>meat - 500 g</li>
-                    <li>potatoes - 1 kg</li>
-                    <li>лук - 2 броя</li>
-                    <li>домати - 2 броя</li>
-                    <li>кисело мляко - 400 грама</li>
-                    <li>яйца - 2 броя</li>
-                    <li>кашкавал - 100 грама</li>
-                    <li>брашно - 5 супени лъжици</li>
-                    <li>олио - 1 кафена чаша</li>
-                    <li>червен пипер - 1 чаена лъжица</li>
-                    <li>чубрица - 1 чаена лъжица</li>
+                    {recepie.ingredients.split(", ").map(ingredient => (
+                        <li>{ingredient}</li>
+                    ))}
                 </ul>
             </div>
             <div className="preparation">
                 <h2>Preparation</h2>
                 <p>
-                    Загрявате мазнината в дълбок тиган или тенджера. В загрятата мазнина задушете измитият, изчистен и нарязан на дребно лук, докато омекне. Добавяте нарязаните на дребно половината домати и каймата, черният пипер и чубрицата, както и една чаена лъжица сол. Може да ползвате кайма, каквато имате под ръка, но най-вкусната мусаката става с кайма смес – 50% свинско и 50 % телешко месо.
-                    След като водата от доматите изври добавяте червения пипер. Измивате, почиствате, обелвате и нарязвате на дребни кубчета картофите и ги прибавяте към месото. Намазнявате тавичка на дъното на която поставяте другата половина от доматите и върху тях изсипвате сместа за мусака. Добавяте една непълна чаена чаша гореща вода и поставяте в предварително загрята на 200 градуса фурна. Печете до докато водата изври, а картофите станат златисти.
-                    Идва моментът за приготвяне на заливката за мусаката. Тя става лесно и много бързо. Разбърквате киселото мляко и яйцата, след което при постоянно бъркане добавяте и брашното, до получаване на гладка смес. Накрая добавяте и настъргания на дребно кашкавал. Заливате мусаката и печете докато порозовее.
+                    {recepie.preparation}
                 </p>
             </div>
         </div>

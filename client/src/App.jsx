@@ -5,6 +5,7 @@ import Register from "./components/register/Register";
 import AllRecepies from "./components/allRecepies/AllRecepies";
 import Create from "./components/create/Create";
 import MyRecepies from "./components/myRecepies/MyRecepies";
+import Details from "./components/details/Details";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/my-recepies" element={<MyRecepies />} />
         <Route path="/login"  element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/recepie/:recepieId" element={<Details />} />
       </Routes>
     </div>
   );
