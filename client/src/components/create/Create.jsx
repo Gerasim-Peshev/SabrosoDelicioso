@@ -10,7 +10,15 @@ export default function Create(){
 
         const recepieData = Object.fromEntries(new FormData(e.currentTarget));
 
-
+        const data = {
+            title: recepieData.title,
+            imageUrl: recepieData.imageUrl,
+            category: recepieData.category,
+            prepTime: recepieData.prepTime,
+            portion: recepieData.portion,
+            ingredients: recepieData.ingredients.split(', ' || ',' || ' '),
+            preparation: recepieData.preparation
+        }
         try{
             const result = await recepiesServices.recepieCreate(recepieData);
 

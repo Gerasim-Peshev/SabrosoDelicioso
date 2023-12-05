@@ -27,8 +27,8 @@ export default function Details(){
             <div className="ingredients">
                 <h2>Ingredients</h2>
                 <ul>
-                    {recepie.ingredients.split(", ").map(ingredient => (
-                        <li>{ingredient}</li>
+                    {recepie.ingredients?.map(ingredient => (
+                        <li key={ingredient}>{ingredient}</li>
                     ))}
                 </ul>
             </div>
