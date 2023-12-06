@@ -17,10 +17,11 @@ export default function Create(){
             prepTime: recepieData.prepTime,
             portion: recepieData.portion,
             ingredients: recepieData.ingredients.split(', ' || ',' || ' '),
-            preparation: recepieData.preparation
+            preparation: recepieData.preparation,
+            likes: recepieData.likes
         }
         try{
-            const result = await recepiesServices.recepieCreate(recepieData);
+            await recepiesServices.recepieCreate(data);
 
             navigate('/');
         } catch (err){
