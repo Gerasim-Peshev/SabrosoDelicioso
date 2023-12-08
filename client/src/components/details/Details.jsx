@@ -1,17 +1,42 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 import * as recepieService from '../../services/recepiesService';
+import * as commentService from '../../services/commentService';
+import AuthContext from "../../contexts/authContext";
 
 export default function Details(){
 
+    const { username, userId } = useContext(AuthContext);
     const [recepie, setRecepie] = useState({});
+    const [comments, setComments] = useState([]);
     const {recepieId} = useParams();
 
     useEffect(() => {
         recepieService.getOne(recepieId)
                         .then(setRecepie);
+
+        commentService.getCommentsFor(recepieId)
+                        .then(setComments);
     }, [recepieId]);
+
+    const addCommentHandler = async (e) => {
+        e.preventDefault();
+
+        const formD = new FormData(e.currentTarget);
+
+        console.log(formD);
+
+        if(!username){
+            return;
+        }
+
+        const newComment = await commentService.create(recepieId, formD.get('comment'));
+
+        console.log(newComment);
+
+        setComments(state => [...state, {...newComment, owner: {username}}]);
+    }
 
     return (
         <div className="container">
@@ -20,7 +45,7 @@ export default function Details(){
                 <img src={recepie.imageUrl} alt="" />
                 <div className="info">
                     <h3>Type: {recepie.category}</h3>
-                    <h3>Preparation time: {recepie.prepTime}м</h3>
+                    <h3>Preparation time: {recepie.prepTime}m</h3>
                     <h3>Portions: {recepie.portion}</h3>
                 </div>
             </div>
@@ -38,6 +63,43 @@ export default function Details(){
                     {recepie.preparation}
                 </p>
             </div>
+
+            {userId === recepie._ownerId 
+                ? (
+                    <div className="buttons">
+                        <Link to={`#`} className="button">Edit</Link>
+                        <button className="button" onClick={`#`}>Delete</button>
+                    </div>
+                )
+                :
+                (<></>)
+            }
+
+            <div className="comments">
+                <h2>Comments:</h2>
+                {comments.length > 0 
+                    ?
+                    (
+                        <ul>
+                            {comments.map(({_id, text, owner}) => 
+                                <li key={_id}><p>{owner} : {text}</p></li>)}
+                        </ul>
+                    )
+                    :
+                    (
+                        <p className="noComment">No comments</p>
+                    )
+                }
+
+            </div>
+
+            <article className="createComment">
+                        <label>Add comment:</label>
+                        <form className="form" onSubmit={addCommentHandler}>
+                            <textarea name="comment" placeholder="Comment here"></textarea>
+                            <input className="btn submit" type="submit" value="Add Comment"/>
+                        </form>
+            </article>
         </div>
     );
 }

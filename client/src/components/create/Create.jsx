@@ -16,7 +16,7 @@ export default function Create(){
             category: recepieData.category,
             prepTime: recepieData.prepTime,
             portion: recepieData.portion,
-            ingredients: recepieData.ingredients.split(', ' || ',' || ' '),
+            ingredients: recepieData.ingredients.toLowerCase().split(', ' || ',' || ' '),
             preparation: recepieData.preparation,
             likes: recepieData.likes
         }

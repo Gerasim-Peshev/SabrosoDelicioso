@@ -15,7 +15,13 @@ export default function Header() {
             <nav>
                 <ul className="firstNav">
                     <li><Link to="/">All recepies</Link></li>
-                    <li><Link to="/create">Create recepie</Link></li>
+                    {isAuthenticated === true ?
+                        (
+                            <li><Link to="/create">Create recepie</Link></li>
+                        )    
+                        :
+                        (<></>)
+                    }
                 </ul>
                 <img id="logo" src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/en_US/games/switch/s/spongebob-krusty-cook-off-switch/description-image" alt=""  />
                 <ul className="secondNav">

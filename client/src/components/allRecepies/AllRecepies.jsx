@@ -47,13 +47,13 @@ export default function AllRecepies(){
                 </div>
             </section> */}
 
-            {recepies.map(recepie => (
-                <RecepieItem key={recepie._id} {...recepie} />
-            ))}
-
-            {recepies.length === 0 && (
-            <h3 className="no-articles">No articles yet</h3>
-            )}
+            {recepies.length > 0 ? 
+                recepies.map(recepie => (
+                        <RecepieItem key={recepie._id} {...recepie} />
+                    ))
+                :
+                        <h3 className="no-articles">No articles yet</h3>
+            }
         </div>
     </main>
     );

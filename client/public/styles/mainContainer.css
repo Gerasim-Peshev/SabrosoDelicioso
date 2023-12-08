@@ -28,10 +28,13 @@ main h1 {
 }
 
 .recepiesContainer section button {
-    width: 15%;
-    height: auto;
-    aspect-ratio: 1/1;
-    border-radius: 1.7em;
+   height: 25%;
+   align-self: center;
+}
+
+.recepiesContainer section button a {
+    color: black;
+    text-decoration: none;
 }
 
 .additionals {
