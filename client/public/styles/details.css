@@ -53,3 +53,21 @@ div img {
     line-height: 2em;
     font-size: 18px;
 }
+
+.comments label {
+    text-align: center;
+}
+
+.comments ul {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+}
+
+.comments ul li {
+    flex: 0 0 30%;
+    border: 2px solid rgb(255, 145, 0);
+}

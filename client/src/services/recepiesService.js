@@ -19,3 +19,13 @@ export const recepieCreate = async (recepieData) => {
 
     return result;
 }
+
+export const recepieEdit = async (recepieId, recepieData) => {
+    const result = await request.put(`${baseUrl}/${recepieId}`, recepieData);
+
+    return result;
+}
+
+export const removeRecepie = async (recepieId) => {
+    await request.remove(`${baseUrl}/${recepieId}`);
+}

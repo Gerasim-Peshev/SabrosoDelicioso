@@ -10,6 +10,7 @@ import { useState } from "react";
 import AuthContext from "./contexts/authContext";
 import * as authService from './services/authService';
 import Logout from "./components/logout/Logout";
+import Edit from "./components/edit/Edit";
 
 function App() {
 
@@ -80,6 +81,7 @@ function App() {
           <Route path="/login"  element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/recepie/:recepieId/edit" element={<Edit />} />
           <Route path="/recepie/:recepieId" element={<Details />} />
         </Routes>
       </div>

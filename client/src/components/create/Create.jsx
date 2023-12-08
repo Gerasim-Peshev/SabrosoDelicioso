@@ -16,10 +16,10 @@ export default function Create(){
             category: recepieData.category,
             prepTime: recepieData.prepTime,
             portion: recepieData.portion,
-            ingredients: recepieData.ingredients.toLowerCase().split(', ' || ',' || ' '),
+            ingredients: recepieData.ingredients.toLowerCase().split(/[, |w | , ]+/),
             preparation: recepieData.preparation,
-            likes: recepieData.likes
-        }
+        };
+
         try{
             await recepiesServices.recepieCreate(data);
 
@@ -55,8 +55,6 @@ export default function Create(){
 
                     <label htmlFor="preparation">Preparation:</label>
                     <textarea name="preparation" id="preparation" cols="30" rows="10"></textarea>
-
-                    <input className="toHide" name="likes" id="likes" defaultValue={0} />
 
                     <input className="btn submit" type="submit" value="Create recepie" />
                 </div>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import * as recepieService from '../../services/recepiesService';
 import * as commentService from '../../services/commentService';
@@ -7,6 +7,7 @@ import AuthContext from "../../contexts/authContext";
 
 export default function Details(){
 
+    const navigate = useNavigate();
     const { username, userId } = useContext(AuthContext);
     const [recepie, setRecepie] = useState({});
     const [comments, setComments] = useState([]);
@@ -35,7 +36,17 @@ export default function Details(){
 
         console.log(newComment);
 
-        setComments(state => [...state, {...newComment, owner: {username}}]);
+        setComments(state => [...state, {...newComment, username: {username}}]);
+    }
+
+    const deleteButtonClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete ${recepie.title}`);
+
+        if (hasConfirmed) {
+            await recepieService.removeRecepie(recepieId);
+
+            navigate('/');
+        }
     }
 
     return (
@@ -67,8 +78,8 @@ export default function Details(){
             {userId === recepie._ownerId 
                 ? (
                     <div className="buttons">
-                        <Link to={`#`} className="button">Edit</Link>
-                        <button className="button" onClick={`#`}>Delete</button>
+                        <Link to={`/recepie/${recepie._id}/edit`} className="button">Edit</Link>
+                        <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
                     </div>
                 )
                 :
@@ -76,13 +87,13 @@ export default function Details(){
             }
 
             <div className="comments">
-                <h2>Comments:</h2>
+                <label>Comments:</label>
                 {comments.length > 0 
                     ?
                     (
                         <ul>
                             {comments.map(({_id, text, owner}) => 
-                                <li key={_id}><p>{owner} : {text}</p></li>)}
+                                <li key={_id}><p>{owner || username} : {text}</p></li>)}
                         </ul>
                     )
                     :
