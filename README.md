@@ -5,6 +5,8 @@ Web application for finding recepies. You also can add recepies and comment them
 # 🛠 Built with:
 
 - [React](https://react.dev/)
+- [HTML](https://bg.wikipedia.org/wiki/HTML)
+- [CSS](https://bg.wikipedia.org/wiki/CSS)
 
 # Users
 |        Права                   | Анонимен | Потребител | Създател |
