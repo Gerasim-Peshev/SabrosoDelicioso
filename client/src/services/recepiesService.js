@@ -8,6 +8,17 @@ export const getAllRecepies = async () => {
     return result;
 }
 
+export const getAllMyRecepies = async (userId) => {
+    
+    const query = new URLSearchParams({
+        where: `_ownerId="${userId}"`,
+    });
+
+    const result = await request.get(`${baseUrl}?${query}`);
+
+    return result;
+}
+
 export const getOne = async (recepieId) => {
     const result = await request.get(`${baseUrl}/${recepieId}`);
 

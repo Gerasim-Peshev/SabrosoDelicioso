@@ -27,16 +27,18 @@ export default function Details(){
         const formD = new FormData(e.currentTarget);
 
         console.log(formD);
-
+        
         if(!username){
             return;
         }
-
+        
         const newComment = await commentService.create(recepieId, formD.get('comment'));
-
+        
         console.log(newComment);
-
+        
         setComments(state => [...state, {...newComment, username: {username}}]);
+        
+        document.getElementsByClassName("form")[0].children[0].value = "";
     }
 
     const deleteButtonClickHandler = async () => {
@@ -107,7 +109,7 @@ export default function Details(){
             <article className="createComment">
                         <label>Add comment:</label>
                         <form className="form" onSubmit={addCommentHandler}>
-                            <textarea name="comment" placeholder="Comment here"></textarea>
+                            <textarea className="textHere" name="comment" placeholder="Comment here"></textarea>
                             <input className="btn submit" type="submit" value="Add Comment"/>
                         </form>
             </article>
