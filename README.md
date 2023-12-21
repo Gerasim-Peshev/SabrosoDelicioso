@@ -2,6 +2,13 @@
 
 Web application for finding recepies. You also can add recepies and comment them.
 
+# How to start the server
+1. Open 2 terminals
+2. At the first one type "cd client" and at the secont one "cd server"
+3. At the secont one first type "npm install" then "npm run client" then "npm run build" and at the end type "node .\dist\server.js", into the terminal you have to receive the message with url for the server
+4. Go to the client terminal and type "npm install" and then "npm run dev"
+5. You are ready
+
 # 🛠 Built with:
 
 - [React](https://react.dev/)
